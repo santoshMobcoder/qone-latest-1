@@ -1,5 +1,8 @@
 const { Validator } = require("node-input-validator");
-const { errorResponse } = require("../../../utils/response/response.handler");
+const {
+  errorResponse,
+  statusCodes,
+} = require("../../../utils/response/response.handler");
 
 async function validateLoginParam(req, res, next) {
   try {
@@ -15,7 +18,7 @@ async function validateLoginParam(req, res, next) {
         res,
         message: "validation error",
         data: v.errors,
-        code: 422,
+        code: statusCodes.STATUS_CODE_VALIDATION_FAILED,
       });
 
     return next();
