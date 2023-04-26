@@ -8,6 +8,6 @@ const CustomInput = styled.input`
   border-radius: 0.5rem;
   margin: 0.5rem 0;
   box-sizing: border-box;
-  border: 0.15rem solid #797775;
+  border: 0.15rem solid #CBCBCB;
 `;
 export default CustomInput;

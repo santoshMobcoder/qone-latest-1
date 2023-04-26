@@ -28,15 +28,27 @@ const Table = styled.table`
   border: 0.2rem solid ${(props) => props.theme.primaryColor};
   border-collapse: collapse;
 `;
-const Th = styled.th`
+const Th1 = styled.th`
   border: 0.2rem solid ${(props) => props.theme.primaryColor};
   border-collapse: collapse;
   padding: 1rem;
+  color: #808080;
+  text-align: start;
+  width: 24.6%;
+`;
+const Th2 = styled.th`
+  border: 0.2rem solid ${(props) => props.theme.primaryColor};
+  border-collapse: collapse;
+  padding: 1rem;
+  color: #808080;
+  text-align: start;
+  width: 13%;
 `;
 const Td = styled.td`
   border: 0.2rem solid ${(props) => props.theme.primaryColor};
   border-collapse: collapse;
   padding: 0.5rem 1rem;
+  color: #808080;
 `;
 
 const ActionButtons = ({ editHandler, deleteHandler, data }) => {
@@ -138,11 +150,11 @@ export default function ListItem() {
           <Table>
             <thead>
               <tr>
-                <Th>Item Name</Th>
-                <Th>User Added</Th>
-                <Th>Date Added</Th>
-                <Th>State</Th>
-                <Th>Action</Th>
+                <Th1>Item Name</Th1>
+                <Th1>User Added</Th1>
+                <Th1>Date Added</Th1>
+                <Th2>State</Th2>
+                <Th2>Action</Th2>
               </tr>
             </thead>
             <tbody>

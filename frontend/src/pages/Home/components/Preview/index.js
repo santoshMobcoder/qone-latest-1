@@ -18,6 +18,7 @@ const Container = styled.div`
 const Value = styled.div`
   font-size: 1.2rem;
   padding: 1rem 0;
+  color: #808080;
 `;
 
 const Label = styled(Value)`

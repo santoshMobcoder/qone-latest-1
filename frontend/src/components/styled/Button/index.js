@@ -33,6 +33,7 @@ export const OutlineButton = styled.button`
   font-size: 1rem;
   cursor: pointer;
   width: 15rem;
+  background-color: #fff
 `;
 
 export default Button;

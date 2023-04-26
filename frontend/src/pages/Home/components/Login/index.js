@@ -14,7 +14,7 @@ import { loginSchema } from "./validation";
 import { loginSuccess } from "../../../../store/UserReducer";
 
 const Form = styled.form`
-  width: 40%;
+  width: 50%;
 `;
 const FieldSection = styled.div`
   width: 100%;
