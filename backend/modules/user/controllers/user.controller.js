@@ -42,7 +42,7 @@ async function isUniqueItem(req, res) {
   const db = await connect();
 
   const filter = {
-    itemName: { $regex: itemName, $options: "i" },
+    itemName: new RegExp(`^${itemName}$`,'i'),
     ...(id
       ? {
           _id: {
