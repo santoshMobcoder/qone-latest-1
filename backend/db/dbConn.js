@@ -5,7 +5,6 @@ const dbName = process.env.DB_NAME || "";
 
 const client = new MongoClient(connectionString, { useNewUrlParser: true });
 let conn;
-let db;
 
 async function connect() {
   try {
