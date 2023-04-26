@@ -19,7 +19,7 @@ passport.use(
       return db
         .collection("users")
         .findOne(
-          { email, password },
+          { $or: [{ email }, { userName: email }], password },
           {
             projection: { __v: 0, password: 0 },
           }

@@ -7,7 +7,7 @@ const {
 async function validateLoginParam(req, res, next) {
   try {
     const v = new Validator(req.body, {
-      email: "required|email",
+      email: "required|string",
       password: "required",
     });
 
