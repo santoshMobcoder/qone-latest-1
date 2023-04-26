@@ -1,5 +1,5 @@
-import axios from "axios";
 import * as Yup from "yup";
+import * as UserService from "../../../../../services/user";
 
 export const addItemSchema = Yup.object({
   itemName: Yup.string()
@@ -10,13 +10,12 @@ export const addItemSchema = Yup.object({
       "Item name must be unique",
       async function (value) {
         try {
-          const status = await axios.post(
-            process.env.REACT_APP_BASE_URL + "/user/items/isunique",
-            {
-              itemName: value,
-            }
-          );
-          if (status.data.data.status) return true;
+          const data = {
+            itemName: value,
+          };
+          const status = await UserService.isUniqueItem({ body: data });
+
+          if (status.data.status) return true;
           return false;
         } catch (e) {
           return false;

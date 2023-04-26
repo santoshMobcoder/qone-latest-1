@@ -2,8 +2,6 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { useFormik } from "formik";
-import axios from "axios";
-
 import CustomInput from "../../../../components/styled/CustomInput";
 import Button from "../../../../components/styled/Button";
 import ActionSection from "../../../../components/styled/ActionSection";
@@ -12,6 +10,7 @@ import ErrorLabel from "../../../../components/styled/ErrorLabel";
 import Label from "../../../../components/styled/Label";
 import { loginSchema } from "./validation";
 import { loginSuccess } from "../../../../store/UserReducer";
+import * as UserService from "../../../../services/user";
 
 const Form = styled.form`
   width: 50%;
@@ -32,14 +31,15 @@ export default function Login() {
       initialValues,
       validationSchema: loginSchema,
       onSubmit: (values, action) => {
-        axios
-          .post(`${process.env.REACT_APP_BASE_URL}/login`, {
-            email: values.userName,
-            password: values.password,
-          })
-          .then(function (response) {
+        const data = {
+          email: values.userName,
+          password: values.password,
+        };
+
+        UserService.loginUser({ body: data })
+          .then((res) => {
             action.resetForm();
-            dispatch(loginSuccess(response.data.data));
+            dispatch(loginSuccess(res.data));
           })
           .catch(function (error) {
             alert("Wrong user name or password");

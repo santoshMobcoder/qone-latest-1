@@ -14,7 +14,7 @@ import ErrorLabel from "../../../../components/styled/ErrorLabel";
 import Label from "../../../../components/styled/Label";
 
 const Form = styled.form`
-  width: 40%;
+  width: 50%;
 `;
 
 const Select = styled.select`

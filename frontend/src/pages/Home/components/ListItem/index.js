@@ -8,10 +8,13 @@ import DeleteItemPopup from "./components/DeleteItemPopup";
 import CustomModal from "../../../../components/CustomModel";
 import { goStepBack, loadItems } from "../../../../store/UserReducer";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import * as UserService from "../../../../services/user";
 
 const Container = styled.div`
   width: 100%;
+`;
+const CustomMainSection = styled(MainSection)`
+  padding: 0;
 `;
 const EditBtn = styled.a`
   color: blue;
@@ -89,12 +92,11 @@ export default function ListItem() {
   };
 
   const updateItem = (data = null, values) => {
-    axios
-      .put(`${process.env.REACT_APP_BASE_URL}/user/items/${data._id}`, values, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    UserService.updateItem({
+      token,
+      body: values,
+      id: data._id,
+    })
       .then(function (response) {
         setShowPopup(() => false);
         loadData();
@@ -103,12 +105,10 @@ export default function ListItem() {
   };
 
   const deleteItem = (data = null) => {
-    axios
-      .delete(`${process.env.REACT_APP_BASE_URL}/user/items/${data._id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    UserService.deleteItem({
+      token,
+      id: data._id,
+    })
       .then(function (response) {
         setShowPopup(() => false);
         loadData();
@@ -122,14 +122,9 @@ export default function ListItem() {
   };
 
   const loadData = () => {
-    axios
-      .get(`${process.env.REACT_APP_BASE_URL}/user/items`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+    UserService.listItems({ token })
       .then(function (response) {
-        dispatch(loadItems(response.data.data));
+        dispatch(loadItems(response.data));
       })
       .catch(function (error) {});
   };
@@ -146,7 +141,7 @@ export default function ListItem() {
   return (
     <>
       <Container>
-        <MainSection>
+        <CustomMainSection>
           <Table>
             <thead>
               <tr>
@@ -171,7 +166,7 @@ export default function ListItem() {
               })}
             </tbody>
           </Table>
-        </MainSection>
+        </CustomMainSection>
         <CustomActionSection>
           <OutlineButton onClick={() => dispatch(goStepBack(2))}>
             Add More Items

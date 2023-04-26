@@ -9,7 +9,7 @@ import {
   clearPreviewItems,
 } from "../../../../store/UserReducer";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import * as UserService from "../../../../services/user";
 
 const Container = styled.div`
   width: 40%;
@@ -35,19 +35,12 @@ export default function Preview() {
   const token = useSelector((state) => state.user.token);
 
   const saveData = async () => {
-    axios
-      .post(
-        `${process.env.REACT_APP_BASE_URL}/user/items`,
-        {
-          items: previewItems,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then(function (response) {
+    const data = {
+      items: previewItems,
+    };
+
+    UserService.addItems({ token, body: data })
+      .then((res) => {
         dispatch(goStepNext());
         dispatch(clearPreviewItems());
       })
