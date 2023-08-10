@@ -10,4 +10,4 @@ COPY . /app
 RUN npm install
 
 # Specify the command to run when the container starts
-CMD ["npm", "start"]
+CMD ["ENV=dev", "npm", "start"]

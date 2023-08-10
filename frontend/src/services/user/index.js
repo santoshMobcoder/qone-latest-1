@@ -21,7 +21,12 @@ const _fetch = async (url, data) => {
 };
 
 const _getUrl = (endpoint) => {
-  return process.env.REACT_APP_BASE_URL + endpoint;
+  switch (process.env.ENV) {
+    case "dev":
+      return process.env.REACT_APP_BASE_URL_DEV + endpoint;
+    default:
+      return process.env.REACT_APP_BASE_URL_LOCAL + endpoint;
+  }
 };
 
 /** ------------- service function ---------------------- */
