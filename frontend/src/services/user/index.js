@@ -21,7 +21,8 @@ const _fetch = async (url, data) => {
 };
 
 const _getUrl = (endpoint) => {
-  switch (process.env.ENV) {
+  console.log(process.env.REACT_APP_ENV, "============================");
+  switch (process.env.REACT_APP_ENV) {
     case "dev":
       return process.env.REACT_APP_BASE_URL_DEV + endpoint;
     default:

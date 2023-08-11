@@ -10,4 +10,4 @@ COPY . /app
 RUN npm install
 
 # Specify the command to run when the container starts
-CMD ["ENV=dev", "npm", "start"]
+CMD sh -c 'REACT_APP_ENV=dev npm start'
